@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Date Formats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #3f01fa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #3206f6;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Current Date Formats</h2>
+
+    <button onclick="getCurrentDate()">Get Current Date</button>
+
+    <p id="result"></p>
+
+    <script>
+        function getCurrentDate() {
+            var currentDate = new Date();
+
+            var mm = String(currentDate.getMonth() + 1).padStart(2, '0');
+            var dd = String(currentDate.getDate()).padStart(2, '0');
+            var yyyy = currentDate.getFullYear();
+
+            var result1 = mm + '-' + dd + '-' + yyyy;
+            var result2 = mm + '/' + dd + '/' + yyyy;
+            var result3 = dd + '-' + mm + '-' + yyyy;
+            var result4 = dd + '/' + mm + '/' + yyyy;
+
+            var output = `1) ${result1}<br>2) ${result2}<br>3) ${result3}<br>4) ${result4}`;
+
+            document.getElementById('result').innerHTML = output;
+        }
+    </script>
+
+</body>
+</html>

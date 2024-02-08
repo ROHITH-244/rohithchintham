@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #3306fa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #3004f5;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Number Checker</h2>
+
+    <label for="userInput">Enter a positive number: </label>
+    <input type="number" id="userInput">
+
+    <br>
+
+    <button onclick="checkNumber()">Check</button>
+
+    <p id="result"></p>
+
+    <script>
+        function checkNumber() {
+            var userInput = parseInt(document.getElementById('userInput').value);
+
+            if (isNaN(userInput) || userInput <= 0) {
+                alert('Please enter a valid positive number.');
+                return;
+            }
+
+            var result = '';
+
+            if (userInput % 3 === 0 && userInput % 7 === 0) {
+                result = 'It is a multiple of 3 and 7.';
+            } else if (userInput % 3 === 0) {
+                result = 'It is a multiple of 3 and not a multiple of 7.';
+            } else if (userInput % 7 === 0) {
+                result = 'It is a multiple of 7 and not a multiple of 3.';
+            } else {
+                result = 'It is neither a multiple of 3 nor 7.';
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+
+</body>
+</html>

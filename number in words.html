@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number to Words Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input {
+            padding: 5px;
+            width: 150px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: #2008fb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #2d04fa;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Number to Text Converter</h2>
+
+    <label for="numberInput">Enter a number (0 to 999): </label>
+    <input type="text" id="numberInput" pattern="[0-9]{1,3}" title="Please enter a number in the range 0 to 999">
+
+    <br>
+
+    <button onclick="convertToWords()">Convert</button>
+
+    <p id="result"></p>
+
+    <script>
+        function convertToWords() {
+            var numberInput = document.getElementById('numberInput').value;
+
+            if (!/^[0-9]{1,3}$/.test(numberInput)) {
+                alert('Please enter a valid number in the range 0 to 999.');
+                return;
+            }
+
+            var number = parseInt(numberInput);
+
+            var ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            var teens = ['', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            var tens = ['', 'ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+            var words = '';
+
+            if (number === 0) {
+                words = 'zero';
+            } else {
+                var hundreds = Math.floor(number / 100);
+                var remainder = number % 100;
+
+                if (hundreds > 0) {
+                    words += ones[hundreds] + ' hundred';
+
+                    if (remainder > 0) {
+                        words += ' and ';
+                    }
+                }
+
+                if (remainder > 0) {
+                    if (remainder < 10) {
+                        words += ones[remainder];
+                    } else if (remainder < 20) {
+                        words += teens[remainder - 10];
+                    } else {
+                        words += tens[Math.floor(remainder / 10)];
+                        if (remainder % 10 > 0) {
+                            words += '-' + ones[remainder % 10];
+                        }
+                    }
+                }
+            }
+
+            document.getElementById('result').innerText = words;
+        }
+    </script>
+
+</body>
+</html>
